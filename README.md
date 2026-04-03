@@ -1,63 +1,15 @@
-# Antigravity Finance - US Stock Quant Dashboard
+# Antigravity Finance - 個人美股量化戰情室
 
-A dynamic, real-time US Stock Portfolio Management and Valuation War Room. This application leverages FastAPI for a high-performance backend, calculating real-time Discounted Cash Flow (DCF) models, and uses React + Vite for a premium, highly responsive frontend dashboard.
+這是一個動態的、即時更新的美國股市投資組合追蹤與公司估值分析儀表板 (Web App)。
 
-## 🌟 Key Features
+## 平台主要功能
 
-* **Real-time Portfolio Sync:** Directly integrates with Google Sheets API to pull the latest transaction records, current pricing, and sector/quadrant allocation data without any manual caching overhead.
-* **Valuation Lab (DCF Engine):** 
-  * Automatically fetches the latest financial data and SEC filings via `yfinance`.
-  * Computes Weighted Average Cost of Capital (WACC), Terminal Growth, and Beta.
-  * Projects future cash flows and calculates an exact Intrinsic Value / Share and a discounted Margin of Safety (MoS) target price.
-* **Premium Dashboard UI:** Built with React, Tailwind CSS v4, and Recharts, structured beautifully with Shadcn-like components to provide actionable, easy-to-read financial breakdowns.
+### 1. 投資組合儀表板 (Portfolio Dashboard)
+* **Google 表單無縫連動：** 網頁會直接與你的私人 Google Sheet 同步。當你在 Google 試算表更新個股交易或變動持股後，無需任何繁瑣設定，只要重整網頁，即時的庫存資訊與市值就會顯示出來。
+* **資產四象限分配：** 將持股劃分為四種主要策略（Core 核心部位 / Momentum 動能部位 / Speculative 投機部位 / Alpha 阿爾法），並以精美的圖表呈現目前的資產佔比與曝險程度。
+* **策略勝率儀表板：** 幫助你一眼掌握自己各個象限持股目前的平均真實獲利表現、整體勝率，嚴格控管投資紀律。
 
-## 🛠 Tech Stack
-
-* **Frontend:** React, Vite, Tailwind CSS v4, Recharts, Lucide React, Shadcn/ui
-* **Backend:** Python, FastAPI, Uvicorn, Pandas, yfinance, gspread (Google Sheets API)
-
-## 🚀 Getting Started
-
-### Prerequisites
-* Node.js & npm (for frontend)
-* Python 3.9+ (for backend)
-* Google Cloud Service Account Credentials (`us-stock-*.json`) with access to the target Google Sheet.
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install fastapi uvicorn gspread google-auth pandas yfinance numpy
-   ```
-4. Place your Google Service Account JSON file in the project root map (it is `.gitignore`d automatically to prevent secrets leaking).
-5. Run the FastAPI development server:
-   ```bash
-   python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-   ```
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the Vite development server:
-   ```bash
-   npm run dev
-   ```
-
-## 🔒 Security Note
-Do **NOT** commit your Google Service account `.json` to version control. The repository includes a `.gitignore` tailored to exclude API tokens, local `.env` variables, and Python caches.
+### 2. 估值分析所 (Valuation Lab)
+* **動態 DCF 估值引擎：** 只要輸入你想查詢的美股代號（例如：AAPL、GOOGL），系統背後的 Python 引擎就會開始自動建模。
+* **實時財報解析：** 分析引擎會抓取該公司最新公佈的歷史與即時財報資料，透過折現現金流 (Discounted Cash Flow, DCF) 技術，推算出該公司的「內在價值 (Intrinsic Value)」。
+* **安全邊際與進出場判斷：** 不只計算內在價值，系統會結合當前市場真實的「即時股價」進行交叉比對，並為你算出 85% 折扣後的「安全買進價（Buy Target）」。直接告訴你這檔股票目前究竟是「被低估」還是「被高估」，輔助所有的中長期投資決策。
