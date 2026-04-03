@@ -1,0 +1,29 @@
+# Credentials
+us-stock-*.json
+*.json
+
+# Override: Keep package.json inside frontend and backend if needed, but the root json is ignored.
+!frontend/package.json
+!frontend/package-lock.json
+!backend/*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+dist/
+.env
+.env.local
+
+# OS
+.DS_Store
+
+# Artifacts
+.agent/
+.gemini/
